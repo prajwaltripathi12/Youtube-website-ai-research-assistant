@@ -72,9 +72,22 @@ if st.button("Analyze"):
 
             video_id = extract_video_id(url)
 
-            text = get_transcript(
-                video_id
-            )
+            text = get_transcript(video_id)
+
+             if not text:
+
+                 st.error(
+                    """
+                    Unable to fetch transcript.
+
+                    Possible reasons:
+                   • Transcript disabled
+                   • YouTube blocked requests
+                   • Transcript unavailable
+                   """
+                 )
+
+                 st.stop()
 
         else:
 
