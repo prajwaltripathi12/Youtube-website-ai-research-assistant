@@ -18,13 +18,6 @@ def extract_video_id(url: str):
     return None
 
 
-from youtube_transcript_api import YouTubeTranscriptApi
-
-
-from youtube_transcript_api import (
-    YouTubeTranscriptApi
-)
-
 def get_transcript(video_id):
 
     try:
@@ -39,6 +32,6 @@ def get_transcript(video_id):
 
     except Exception as e:
 
-        print(e)
+        print(f"Transcript Error: {e}")
 
         return None
