@@ -74,7 +74,7 @@ if st.button("Analyze"):
 
             text = get_transcript(video_id)
 
-             if not text:
+            if not text:
 
                  st.error(
                     """
