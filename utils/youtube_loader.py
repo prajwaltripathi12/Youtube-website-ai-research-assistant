@@ -21,22 +21,24 @@ def extract_video_id(url: str):
 from youtube_transcript_api import YouTubeTranscriptApi
 
 
-def get_transcript(video_id: str) -> str:
+from youtube_transcript_api import (
+    YouTubeTranscriptApi
+)
+
+def get_transcript(video_id):
+
     try:
         api = YouTubeTranscriptApi()
 
-        # Try auto (best)
         transcript = api.fetch(video_id)
 
-        return " ".join(item.text for item in transcript)
+        return " ".join(
+            item.text
+            for item in transcript
+        )
 
-    except Exception:
-        try:
-            # fallback: force English and Hindi (your video case)
-            transcript = api.fetch(video_id, languages=["en", "hi"])
-            return " ".join(item.text for item in transcript)
+    except Exception as e:
 
-        except Exception as e:
-            raise RuntimeError(
-                "No transcript available for this video"
-            )
+        print(e)
+
+        return None
